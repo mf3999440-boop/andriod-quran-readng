@@ -12,6 +12,24 @@
     --primary-foreground: 210 40% 98%;
     --radius: 1rem;
   }
+
+  [data-theme='midnight'] {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+  }
+
+  [data-theme='sepia'] {
+    --background: 40 40% 90%;
+    --foreground: 25 30% 20%;
+    --primary: 25 60% 40%;
+  }
+
+  [data-theme='dark'] {
+    --background: 222 47% 4%;
+    --foreground: 210 40% 98%;
+    --primary: 161 94% 30%;
+  }
 }
 
 @layer utilities {
@@ -22,10 +40,14 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  @apply bg-slate-50 text-slate-900;
+  @apply bg-slate-50 text-slate-900 transition-colors duration-300;
 }
 
-/* Custom scrollbar for a cleaner look */
+[data-theme='midnight'] body { @apply bg-slate-950 text-slate-100; }
+[data-theme='sepia'] body { @apply bg-[#f4ecd8] text-[#5b4636]; }
+[data-theme='dark'] body { @apply bg-black text-slate-100; }
+
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }

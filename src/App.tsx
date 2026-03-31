@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import SurahDetail from "./pages/SurahDetail";
 import Learning from "./pages/Learning";
 import Bookmarks from "./pages/Bookmarks";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/surah/:id" element={<SurahDetail />} />
           <Route path="/learn" element={<Learning />} />
           <Route path="/bookmarks" element={<Bookmarks />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
