@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { surahs } from '../data/surahs';
 import SurahCard from '../components/SurahCard';
 import BottomNav from '../components/BottomNav';
-import { Search, Book } from 'lucide-react';
+import { Search, Book, WifiOff } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 
 const Index = () => {
@@ -23,7 +23,13 @@ const Index = () => {
           <div className="flex justify-between items-center mb-6">
             <div>
               <h1 className="text-2xl font-bold">Quran Reading</h1>
-              <p className="text-emerald-100 text-sm">Learn and recite the Holy Quran</p>
+              <div className="flex items-center gap-2 mt-1">
+                <span className="text-emerald-100 text-xs">Learn and recite the Holy Quran</span>
+                <div className="flex items-center gap-1 bg-emerald-600/50 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                  <WifiOff size={10} className="text-emerald-200" />
+                  <span className="text-[8px] font-bold uppercase tracking-tighter text-emerald-200">Offline Mode</span>
+                </div>
+              </div>
             </div>
             <div className="w-12 h-12 bg-emerald-600/50 rounded-2xl flex items-center justify-center backdrop-blur-sm">
               <Book className="text-white" size={24} />

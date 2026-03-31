@@ -4,14 +4,18 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { surahs } from '../data/surahs';
 import { ChevronLeft, Bookmark, Share2, Play } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useBookmarks } from '../hooks/use-bookmarks';
+import { cn } from '@/lib/utils';
 
 const SurahDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const surah = surahs.find(s => s.id === Number(id));
+  const { toggleBookmark, isBookmarked } = useBookmarks();
 
   if (!surah) return <div className="p-8 text-center">Surah not found</div>;
+
+  const saved = isBookmarked(surah.id);
 
   return (
     <div className="min-h-screen bg-white pb-12">
@@ -24,8 +28,14 @@ const SurahDetail = () => {
           <h1 className="font-bold text-gray-800">{surah.englishName}</h1>
           <p className="text-[10px] text-emerald-600 font-medium uppercase tracking-widest">{surah.revelationType}</p>
         </div>
-        <button className="p-2 hover:bg-emerald-50 rounded-full transition-colors">
-          <Bookmark size={20} className="text-emerald-700" />
+        <button 
+          onClick={() => toggleBookmark(surah.id)}
+          className={cn(
+            "p-2 rounded-full transition-colors",
+            saved ? "bg-emerald-50 text-emerald-700" : "hover:bg-emerald-50 text-gray-400"
+          )}
+        >
+          <Bookmark size={20} fill={saved ? "currentColor" : "none"} />
         </button>
       </header>
 
@@ -37,7 +47,6 @@ const SurahDetail = () => {
           <div className="h-[1px] w-24 bg-emerald-400/50 mx-auto mb-4" />
           <p className="text-xs font-medium tracking-widest uppercase">{surah.numberOfAyahs} VERSES</p>
         </div>
-        {/* Decorative element */}
         <div className="absolute -right-8 -bottom-8 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
       </div>
 
